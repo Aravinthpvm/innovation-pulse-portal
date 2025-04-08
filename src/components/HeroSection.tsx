@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -25,9 +26,11 @@ const HeroSection = () => {
               Comprehensive analytics platform tracking patents, R&D investments, and entrepreneurship rates to guide policy decisions and advocate for innovation-friendly infrastructure.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-gradient-to-r from-innovation-500 to-insight-500 hover:from-innovation-600 hover:to-insight-600 text-white px-6 py-6 rounded-lg">
-                Explore Dashboard
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button asChild className="bg-gradient-to-r from-innovation-500 to-insight-500 hover:from-innovation-600 hover:to-insight-600 text-white px-6 py-6 rounded-lg">
+                <Link to="/dashboard">
+                  Explore Dashboard
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
               <Button variant="outline" className="px-6 py-6 rounded-lg">
                 Learn More

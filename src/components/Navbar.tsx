@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,12 +22,22 @@ const Navbar = () => {
   }, []);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  
+  const scrollToFooter = () => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
 
   const navItems = [
-    { title: "Dashboard", href: "#dashboard" },
+    { title: "Dashboard", href: "/dashboard", isExternal: true },
     { title: "Insights", href: "#insights" },
     { title: "Advocacy", href: "#advocacy" },
-    { title: "About", href: "#about" },
+    { title: "About", href: "#", onClick: scrollToFooter },
   ];
 
   return (
@@ -37,27 +47,35 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-innovation-500 to-insight-500 flex items-center justify-center">
               <span className="text-white font-bold text-xl">IP</span>
             </div>
             <span className="font-bold text-xl md:text-2xl">InnovationPulse</span>
-          </a>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="px-4 py-2 text-gray-700 hover:text-innovation-600 font-medium transition-colors"
-              >
-                {item.title}
-              </a>
+              item.isExternal ? (
+                <Link
+                  key={item.title}
+                  to={item.href}
+                  className="px-4 py-2 text-gray-700 hover:text-innovation-600 font-medium transition-colors"
+                >
+                  {item.title}
+                </Link>
+              ) : (
+                <a
+                  key={item.title}
+                  href={item.href}
+                  onClick={item.onClick}
+                  className="px-4 py-2 text-gray-700 hover:text-innovation-600 font-medium transition-colors"
+                >
+                  {item.title}
+                </a>
+              )
             ))}
-            <Button className="ml-4 bg-gradient-to-r from-innovation-500 to-insight-500 hover:from-innovation-600 hover:to-insight-600">
-              Get Started
-            </Button>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -75,18 +93,26 @@ const Navbar = () => {
           <nav className="md:hidden pt-4 pb-6 animate-fade-in">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  className="px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md font-medium"
-                  onClick={toggleMobileMenu}
-                >
-                  {item.title}
-                </a>
+                item.isExternal ? (
+                  <Link
+                    key={item.title}
+                    to={item.href}
+                    className="px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md font-medium"
+                    onClick={toggleMobileMenu}
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.title}
+                    href={item.href}
+                    onClick={item.onClick}
+                    className="px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md font-medium"
+                  >
+                    {item.title}
+                  </a>
+                )
               ))}
-              <Button className="mt-2 bg-gradient-to-r from-innovation-500 to-insight-500 hover:from-innovation-600 hover:to-insight-600">
-                Get Started
-              </Button>
             </div>
           </nav>
         )}
