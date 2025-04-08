@@ -1,13 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,8 +23,7 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   
-  const scrollToFooter = (e) => {
-    e.preventDefault();
+  const scrollToFooter = () => {
     const footer = document.querySelector('footer');
     if (footer) {
       footer.scrollIntoView({ behavior: 'smooth' });
@@ -37,11 +35,8 @@ const Navbar = () => {
 
   const navItems = [
     { title: "Dashboard", href: "/dashboard", isExternal: true },
-    // Only show Insights and Advocacy links on the home page
-    ...(location.pathname === "/" ? [
-      { title: "Insights", href: "#insights" },
-      { title: "Advocacy", href: "#advocacy" }
-    ] : []),
+    { title: "Insights", href: "#insights" },
+    { title: "Advocacy", href: "#advocacy" },
     { title: "About", href: "#", onClick: scrollToFooter },
   ];
 
@@ -111,10 +106,7 @@ const Navbar = () => {
                   <a
                     key={item.title}
                     href={item.href}
-                    onClick={(e) => {
-                      item.onClick ? item.onClick(e) : null;
-                      toggleMobileMenu();
-                    }}
+                    onClick={item.onClick}
                     className="px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md font-medium"
                   >
                     {item.title}
