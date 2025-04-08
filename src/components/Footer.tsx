@@ -1,19 +1,20 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 md:py-16">
+    <footer id="about" className="bg-gray-900 text-gray-300 py-12 md:py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
-            <a href="/" className="flex items-center space-x-2 mb-6">
+            <Link to="/" className="flex items-center space-x-2 mb-6">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-innovation-500 to-insight-500 flex items-center justify-center">
                 <span className="text-white font-bold text-xl">IP</span>
               </div>
               <span className="font-bold text-xl text-white">InnovationPulse</span>
-            </a>
+            </Link>
             <p className="text-gray-400 mb-6">
               Tracking innovation indicators for better policy making and infrastructure development.
             </p>
@@ -45,9 +46,9 @@ const Footer = () => {
             <div>
               <h3 className="text-white font-bold mb-4">Resources</h3>
               <ul className="space-y-3">
-                <li><a href="#dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</a></li>
-                <li><a href="#insights" className="text-gray-400 hover:text-white transition-colors">Policy Insights</a></li>
-                <li><a href="#advocacy" className="text-gray-400 hover:text-white transition-colors">Advocacy Tools</a></li>
+                <li><Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</Link></li>
+                <li><a href="/#insights" className="text-gray-400 hover:text-white transition-colors">Policy Insights</a></li>
+                <li><a href="/#advocacy" className="text-gray-400 hover:text-white transition-colors">Advocacy Tools</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Research Reports</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
               </ul>
@@ -55,7 +56,7 @@ const Footer = () => {
             <div>
               <h3 className="text-white font-bold mb-4">Company</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Partners</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
