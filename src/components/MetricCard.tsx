@@ -11,6 +11,7 @@ interface MetricCardProps {
   trendValue?: string;
   icon?: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const MetricCard = ({
@@ -20,7 +21,8 @@ const MetricCard = ({
   trend = 'neutral',
   trendValue,
   icon,
-  className
+  className,
+  style
 }: MetricCardProps) => {
   const trendColor = trend === 'up' 
     ? 'text-green-500' 
@@ -29,7 +31,7 @@ const MetricCard = ({
       : 'text-gray-500';
   
   return (
-    <Card className={cn("overflow-hidden card-hover", className)}>
+    <Card className={cn("overflow-hidden card-hover", className)} style={style}>
       <CardHeader className="flex flex-row items-center justify-between p-6">
         <CardTitle className="text-xl font-medium">{title}</CardTitle>
         {icon && (
