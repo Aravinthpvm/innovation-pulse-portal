@@ -1,71 +1,92 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-[90vh] bg-hero-pattern flex items-center justify-center section-padding overflow-hidden">
-      {/* Abstract Shapes - Animated Decorations */}
-      <div className="absolute top-1/4 left-[5%] w-64 h-64 rounded-full bg-innovation-100/30 blur-3xl animate-pulse-gentle"></div>
-      <div className="absolute bottom-1/4 right-[5%] w-64 h-64 rounded-full bg-insight-100/30 blur-3xl animate-pulse-gentle"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-innovation-50/20 blur-3xl"></div>
-      
-      {/* Floating Elements */}
-      <div className="hidden lg:block absolute top-[15%] right-[15%] w-24 h-24 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg rotate-12 animate-float"></div>
-      <div className="hidden lg:block absolute bottom-[20%] left-[15%] w-16 h-16 bg-white/80 backdrop-blur-md rounded-md shadow-lg -rotate-12 animate-float"></div>
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-      <div className="container mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 md:pr-8 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Track <span className="text-gradient">Innovation</span> Metrics for Better Policy
+  return (
+    <section className="relative min-h-screen flex items-center text-center lg:text-left pt-16">
+      <div className="absolute inset-0 bg-gradient-to-br from-innovation-50 to-insight-50 -z-10"></div>
+      <div className="container mx-auto px-4 py-16 lg:py-32">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Innovation Pulse <br />
+              <span className="text-innovation-600">Policy Analytics</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-              Comprehensive analytics platform tracking patents, R&D investments, and entrepreneurship rates to guide policy decisions and advocate for innovation-friendly infrastructure.
+            <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+              Data-driven insights for policymakers to foster innovation ecosystems and support entrepreneurial growth.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button asChild className="bg-gradient-to-r from-innovation-500 to-insight-500 hover:from-innovation-600 hover:to-insight-600 text-white px-6 py-6 rounded-lg">
-                <Link to="/dashboard">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+              <Link to="/dashboard">
+                <Button className="text-white bg-innovation-600 hover:bg-innovation-700 px-8 py-6 text-lg rounded-lg">
                   Explore Dashboard
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="outline" className="px-6 py-6 rounded-lg">
-                Learn More
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                className="border-innovation-600 text-innovation-600 hover:bg-innovation-50 px-8 py-6 text-lg"
+                onClick={() => scrollToSection('insights')}
+              >
+                View Insights
               </Button>
             </div>
           </div>
-
-          <div className="md:w-1/2 mt-12 md:mt-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="order-1 lg:order-2 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-innovation-500/20 to-insight-500/20 rounded-xl transform rotate-3 scale-[0.97]"></div>
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="font-bold text-xl">Innovation Index</h3>
-                  <span className="text-innovation-500 font-bold">+5.2%</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-innovation-500 to-insight-500 rounded-2xl blur-xl opacity-30 transform rotate-6"></div>
+              <div className="relative bg-white p-5 sm:p-10 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="flex justify-between items-center mb-8">
+                  <h3 className="text-xl font-bold">Innovation Index</h3>
+                  <div className="text-2xl font-bold text-innovation-600">78.3</div>
                 </div>
-                <div className="space-y-4">
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="bg-innovation-500 h-full rounded-full" style={{ width: '75%' }}></div>
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span>Policy Environment</span>
+                      <span>72%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full">
+                      <div className="bg-innovation-400 h-full rounded-full" style={{ width: "72%" }}></div>
+                    </div>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="bg-insight-500 h-full rounded-full" style={{ width: '62%' }}></div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span>R&D Investment</span>
+                      <span>86%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full">
+                      <div className="bg-innovation-500 h-full rounded-full" style={{ width: "86%" }}></div>
+                    </div>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="bg-innovation-300 h-full rounded-full" style={{ width: '88%' }}></div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span>Talent Pipeline</span>
+                      <span>65%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full">
+                      <div className="bg-innovation-300 h-full rounded-full" style={{ width: "65%" }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span>Infrastructure</span>
+                      <span>80%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full">
+                      <div className="bg-innovation-600 h-full rounded-full" style={{ width: "80%" }}></div>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-6 grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-gray-500 text-sm">Patent Filings</p>
-                    <p className="font-bold text-2xl text-innovation-700">1,245</p>
-                  </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-gray-500 text-sm">R&D Investment</p>
-                    <p className="font-bold text-2xl text-insight-700">$12.4B</p>
-                  </div>
+                <div className="mt-8 text-center">
+                  <p className="text-sm text-gray-500">Last updated: March 2025</p>
                 </div>
               </div>
             </div>

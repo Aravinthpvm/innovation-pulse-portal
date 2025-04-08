@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +24,29 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home page and then scroll
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
   const scrollToFooter = () => {
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home page and then scroll to footer
+      window.location.href = '/#footer';
+      return;
+    }
+    
     const footer = document.querySelector('footer');
     if (footer) {
       footer.scrollIntoView({ behavior: 'smooth' });
@@ -35,9 +58,9 @@ const Navbar = () => {
 
   const navItems = [
     { title: "Dashboard", href: "/dashboard", isExternal: true },
-    { title: "Insights", href: "#insights" },
-    { title: "Advocacy", href: "#advocacy" },
-    { title: "About", href: "#", onClick: scrollToFooter },
+    { title: "Insights", href: "#insights", onClick: () => scrollToSection('insights') },
+    { title: "Advocacy", href: "#advocacy", onClick: () => scrollToSection('advocacy') },
+    { title: "About", href: "#footer", onClick: scrollToFooter },
   ];
 
   return (
@@ -69,7 +92,10 @@ const Navbar = () => {
                 <a
                   key={item.title}
                   href={item.href}
-                  onClick={item.onClick}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    item.onClick && item.onClick();
+                  }}
                   className="px-4 py-2 text-gray-700 hover:text-innovation-600 font-medium transition-colors"
                 >
                   {item.title}
@@ -106,7 +132,10 @@ const Navbar = () => {
                   <a
                     key={item.title}
                     href={item.href}
-                    onClick={item.onClick}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      item.onClick && item.onClick();
+                    }}
                     className="px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md font-medium"
                   >
                     {item.title}
