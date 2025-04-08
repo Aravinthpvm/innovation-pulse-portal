@@ -3,7 +3,7 @@ import React from 'react';
 import MetricCard from './MetricCard';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Award, TrendingUp, Database, Rocket, Globe } from "lucide-react";
+import { FileText, Award, TrendingUp, Database, Rocket, Globe, Clock } from "lucide-react";
 
 const patentData = [
   { year: '2018', patents: 780, investments: 5.2 },
@@ -22,6 +22,20 @@ const regionData = [
   { name: 'Africa', patents: 420, investments: 4.6 },
 ];
 
+// Format date to a readable string
+const formatLastUpdated = () => {
+  const now = new Date();
+  return now.toLocaleString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+};
+
+const lastUpdated = formatLastUpdated();
+
 const DashboardSection = () => {
   return (
     <section id="dashboard" className="section-padding bg-gray-50">
@@ -31,6 +45,10 @@ const DashboardSection = () => {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Track key innovation indicators across regions and time periods to identify trends and opportunities for policy intervention.
           </p>
+          <div className="flex items-center justify-center text-sm text-gray-500 mt-3">
+            <Clock className="h-4 w-4 mr-1" />
+            <span>Last updated: {lastUpdated}</span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
