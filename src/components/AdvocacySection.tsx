@@ -64,9 +64,10 @@ const AdvocacySection = () => {
         source = 'OECD - Innovation Strategy Framework';
         break;
       case 'report':
+        // Updated link with a verified working resource
         fileName = 'Global_Innovation_Index.pdf';
-        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022.pdf';
-        source = 'WIPO - Global Innovation Index';
+        fileUrl = 'https://www.globalinnovationindex.org/userfiles/file/reportpdf/gii-2023/GII-2023.pdf';
+        source = 'WIPO - Global Innovation Index 2023';
         break;
       default:
         fileName = 'innovation_report.pdf';

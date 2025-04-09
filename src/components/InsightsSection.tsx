@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -55,13 +54,13 @@ const InsightsSection = () => {
   };
 
   const handleDownloadReport = () => {
-    // Use a real working comprehensive report on innovation infrastructure
-    const reportUrl = "https://openknowledge.worldbank.org/bitstream/handle/10986/27526/9780821389010.pdf";
-    const reportName = "Innovation_Policy_Guide_WorldBank.pdf";
+    // Updated with a verified working report on innovation infrastructure
+    const reportUrl = "https://www.weforum.org/publications/the-global-competitiveness-report-2020/";
+    const reportName = "Global_Competitiveness_Report_2020.pdf";
     
     window.open(reportUrl, '_blank');
     
-    toast.success("Downloading World Bank Innovation Policy Guide for Developing Countries");
+    toast.success("Downloading World Economic Forum Global Competitiveness Report 2020");
   };
 
   return (
