@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Share2, Download, Mail, Twitter, Facebook } from "lucide-react";
+import { Download, Mail, Twitter, Facebook } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from 'sonner';
 import { cn } from "@/lib/utils";
@@ -28,8 +28,46 @@ const AdvocacySection = () => {
     toast.success(`Shared to ${platform}!`);
   };
   
-  const handleDownload = () => {
-    toast.success("Downloading advocacy toolkit!");
+  const handleDownload = (resourceType: string) => {
+    // Simulate file downloads with different file types
+    let fileName = '';
+    let fileUrl = '';
+    
+    switch(resourceType) {
+      case 'toolkit':
+        fileName = 'innovation_advocacy_toolkit.pdf';
+        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        break;
+      case 'policy':
+        fileName = 'innovation_policy_brief.pdf';
+        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        break;
+      case 'social':
+        fileName = 'social_media_toolkit.zip';
+        fileUrl = 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip';
+        break;
+      case 'presentation':
+        fileName = 'local_government_presentation.pptx';
+        fileUrl = 'https://filesamples.com/samples/document/pptx/sample1.pptx';
+        break;
+      case 'report':
+        fileName = 'economic_impact_report.pdf';
+        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        break;
+      default:
+        fileName = 'innovation_report.pdf';
+        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    }
+    
+    // Create anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast.success(`Downloading ${fileName.replace(/_/g, ' ').replace('.pdf', '').replace('.zip', '').replace('.pptx', '')}`);
   };
 
   const advocacyResources = [
@@ -111,17 +149,13 @@ const AdvocacySection = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8">
               <Button 
                 className="bg-innovation-500 hover:bg-innovation-600 text-white" 
-                onClick={handleDownload}
+                onClick={() => handleDownload('toolkit')}
               >
                 <Download className="h-5 w-5 mr-2" />
                 Download Toolkit
-              </Button>
-              <Button variant="outline" onClick={() => handleShare('email')}>
-                <Share2 className="h-5 w-5 mr-2" />
-                Share
               </Button>
             </div>
           </div>
@@ -151,7 +185,7 @@ const AdvocacySection = () => {
                         <Button 
                           variant="ghost" 
                           className="text-sm p-0 h-auto hover:bg-transparent hover:text-innovation-700"
-                          onClick={() => setSelectedReport(resource.tag)}
+                          onClick={() => handleDownload(resource.tag)}
                         >
                           Download <Download className="h-3.5 w-3.5 ml-1" />
                         </Button>
@@ -244,7 +278,7 @@ const AdvocacySection = () => {
                   <h4 className="font-bold text-xl mb-2">Innovation Index</h4>
                   <p className="opacity-90 text-sm mb-4">#InnovationMatters</p>
                   <div className="h-20 bg-white/30 rounded-md mb-4 flex items-center justify-center">
-                    <span className="font-bold">Share Preview</span>
+                    <span className="font-bold">Share us</span>
                   </div>
                 </div>
               </div>

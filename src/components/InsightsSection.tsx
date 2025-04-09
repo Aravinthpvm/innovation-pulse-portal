@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Lightbulb, TrendingUp, ChevronRight, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from 'sonner';
 
 const InsightsSection = () => {
   const insights = [
@@ -11,27 +12,60 @@ const InsightsSection = () => {
       title: "Increase R&D Tax Incentives",
       description: "Implement progressive tax incentives for companies investing more than 5% of revenue in research and development activities.",
       impact: "High",
-      timeframe: "Short-term"
+      timeframe: "Short-term",
+      reportUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      reportName: "R&D_Tax_Incentives_Analysis.pdf"
     },
     {
       title: "Innovation Hubs in Rural Areas",
       description: "Establish government-backed innovation hubs in rural regions to decentralize tech growth and create opportunities.",
       impact: "Medium",
-      timeframe: "Medium-term"
+      timeframe: "Medium-term",
+      reportUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      reportName: "Rural_Innovation_Hubs_Report.pdf"
     },
     {
       title: "Public-Private Research Partnerships",
       description: "Create framework for universities and private companies to collaborate on research with shared IP arrangements.",
       impact: "High",
-      timeframe: "Medium-term"
+      timeframe: "Medium-term",
+      reportUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      reportName: "Public_Private_Partnerships_Framework.pdf"
     },
     {
       title: "Green Tech Development Fast-Track",
       description: "Streamlined approval processes and dedicated funding for environmental innovation and clean technology.",
       impact: "High",
-      timeframe: "Short-term"
+      timeframe: "Short-term",
+      reportUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      reportName: "Green_Tech_Fast_Track_Analysis.pdf"
     },
   ];
+
+  const handleViewAnalysis = (reportUrl: string, reportName: string) => {
+    // Create an anchor element to open the PDF in a new tab
+    const link = document.createElement('a');
+    link.href = reportUrl;
+    link.target = '_blank';
+    link.download = reportName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast.success(`Opening analysis report: ${reportName.replace(/_/g, ' ').replace('.pdf', '')}`);
+  };
+
+  const handleDownloadReport = () => {
+    // Create an anchor element to download the full report
+    const link = document.createElement('a');
+    link.href = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+    link.download = "Innovation_Infrastructure_Full_Report.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast.success("Downloading Innovation Infrastructure Full Report");
+  };
 
   return (
     <section id="insights" className="section-padding">
@@ -70,7 +104,11 @@ const InsightsSection = () => {
                 <p className="text-gray-600">{insight.description}</p>
               </CardContent>
               <CardFooter>
-                <Button variant="ghost" className="text-innovation-600 p-0 hover:bg-transparent hover:text-innovation-800">
+                <Button 
+                  variant="ghost" 
+                  className="text-innovation-600 p-0 hover:bg-transparent hover:text-innovation-800"
+                  onClick={() => handleViewAnalysis(insight.reportUrl, insight.reportName)}
+                >
                   View Analysis <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </CardFooter>
@@ -106,7 +144,10 @@ const InsightsSection = () => {
                   <span>Capital Access</span>
                 </div>
               </div>
-              <Button className="bg-white text-innovation-600 hover:bg-gray-100">
+              <Button 
+                className="bg-white text-innovation-600 hover:bg-gray-100"
+                onClick={handleDownloadReport}
+              >
                 Download Full Report
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
