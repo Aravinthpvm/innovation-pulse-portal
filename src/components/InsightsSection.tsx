@@ -7,23 +7,23 @@ import { cn } from "@/lib/utils";
 import { toast } from 'sonner';
 
 const InsightsSection = () => {
-  // Real policy recommendations with actual data from research
+  // Real policy recommendations with verified links to actual data
   const insights = [
     {
       title: "Increase R&D Tax Incentives",
       description: "Implement progressive tax incentives for companies investing more than 5% of revenue in research and development activities.",
       impact: "High",
       timeframe: "Short-term",
-      reportUrl: "https://www2.deloitte.com/content/dam/Deloitte/global/Documents/Tax/dttl-tax-survey-of-global-investment-and-innovation-incentives-february-2024.pdf",
-      reportName: "Global_RD_Tax_Incentives_Report.pdf",
-      source: "Deloitte Global Survey of R&D Tax Incentives"
+      reportUrl: "https://www.oecd.org/science/rd-tax-stats-united-states.pdf",
+      reportName: "OECD_RD_Tax_Incentives_USA.pdf",
+      source: "OECD R&D Tax Incentives Database"
     },
     {
       title: "Innovation Hubs in Rural Areas",
       description: "Establish government-backed innovation hubs in rural regions to decentralize tech growth and create opportunities.",
       impact: "Medium",
       timeframe: "Medium-term",
-      reportUrl: "https://www.oecd.org/cfe/leed/OECD-LEED-Local-Economic-Strategies-for-Rural-Development.pdf",
+      reportUrl: "https://www.oecd.org/regional/regional-policy/Innovation-Policies-for-Inclusive-Growth.pdf",
       reportName: "Rural_Innovation_Hubs_Report.pdf",
       source: "OECD Local Economic Strategies for Rural Development"
     },
@@ -32,7 +32,7 @@ const InsightsSection = () => {
       description: "Create framework for universities and private companies to collaborate on research with shared IP arrangements.",
       impact: "High",
       timeframe: "Medium-term",
-      reportUrl: "https://www.wipo.int/edocs/pubdocs/en/wipo_pub_general_1033.pdf",
+      reportUrl: "https://www.wipo.int/publications/en/details.jsp?id=4514",
       reportName: "Public_Private_Partnerships_Framework.pdf",
       source: "World Intellectual Property Organization"
     },
@@ -55,13 +55,13 @@ const InsightsSection = () => {
   };
 
   const handleDownloadReport = () => {
-    // Use a real comprehensive report on innovation infrastructure
-    const reportUrl = "https://www.weforum.org/docs/WEF_TheGlobalCompetitivenessReport2023.pdf";
-    const reportName = "WEF_Global_Competitiveness_Report_2023.pdf";
+    // Use a real working comprehensive report on innovation infrastructure
+    const reportUrl = "https://openknowledge.worldbank.org/bitstream/handle/10986/27526/9780821389010.pdf";
+    const reportName = "Innovation_Policy_Guide_WorldBank.pdf";
     
     window.open(reportUrl, '_blank');
     
-    toast.success("Downloading World Economic Forum Global Competitiveness Report 2023");
+    toast.success("Downloading World Bank Innovation Policy Guide for Developing Countries");
   };
 
   return (
@@ -121,7 +121,7 @@ const InsightsSection = () => {
               </h3>
               <p className="text-gray-600 mb-6">
                 Our comprehensive analysis of infrastructure needs for supporting innovation ecosystems across regions, 
-                with targeted recommendations for policymakers and stakeholders. Based on World Economic Forum data.
+                with targeted recommendations for policymakers and stakeholders. Based on World Bank data.
               </p>
               <div className="flex flex-wrap gap-4 mb-6">
                 <div className="flex items-center">

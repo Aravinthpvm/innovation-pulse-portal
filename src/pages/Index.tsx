@@ -12,7 +12,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <DashboardSection />
       <div className="container mx-auto px-4 py-8">
         <div className="bg-gray-50 p-6 rounded-lg mb-12">
           <h3 className="text-xl font-bold mb-3">Data Sources</h3>
@@ -90,6 +89,7 @@ const Index = () => {
           <p className="text-xs text-gray-500 mt-4">Data last updated: April 2025</p>
         </div>
       </div>
+      <DashboardSection />
       <InsightsSection />
       <AdvocacySection />
       <Footer />

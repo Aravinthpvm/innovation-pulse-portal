@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -40,14 +41,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Contact Us</h4>
             <p className="text-gray-400">
-              123 Innovation Drive
+              CodeForge
               <br />
-              Tech City, State 12345
+              EASA College of Engineering and Technology
+              <br />
+              Coimbatore 641105
             </p>
             <p className="text-gray-400">
-              Email: info@innovationpulse.com
+              Email: codeforge2k25@gmail.com
               <br />
-              Phone: (123) 456-7890
+              Phone: (997) 088-6300
             </p>
           </div>
           <div>

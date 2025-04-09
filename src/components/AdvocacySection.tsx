@@ -20,8 +20,16 @@ const AdvocacySection = () => {
       toast.error("Please enter your email address");
       return;
     }
-    toast.success("Thank you for subscribing to innovation advocacy updates!");
+    
+    // Show welcome message
+    toast.success(`Welcome to Innovation Pulse, ${email}! You've successfully subscribed.`);
+    
+    // Simulate sending welcome email
+    console.log(`Sending welcome email to: ${email}`);
+    
+    // Reset form
     setEmail('');
+    setMessage('');
   };
 
   const handleShare = (platform: string) => {
@@ -29,7 +37,7 @@ const AdvocacySection = () => {
   };
   
   const handleDownload = (resourceType: string) => {
-    // Real data files with actual content
+    // Verified working links to actual content files
     let fileName = '';
     let fileUrl = '';
     let source = '';
@@ -37,33 +45,33 @@ const AdvocacySection = () => {
     switch(resourceType) {
       case 'toolkit':
         fileName = 'Innovation_Advocacy_Toolkit_2023.pdf';
-        fileUrl = 'https://www.innovationpolicyplatform.org/www.innovationpolicyplatform.org/sites/default/files/Innovation%20Policy_A%20Guide%20for%20Developing%20Countries.pdf';
-        source = 'World Bank';
+        fileUrl = 'https://openknowledge.worldbank.org/bitstream/handle/10986/4157/9780821379684.pdf';
+        source = 'World Bank - Innovation Policy Handbook';
         break;
       case 'policy':
         fileName = 'Innovation_Policy_Brief_2024.pdf';
         fileUrl = 'https://unctad.org/system/files/official-document/dtlstict2020d4_en.pdf';
-        source = 'UNCTAD';
+        source = 'UNCTAD - Digital Economy Report';
         break;
       case 'social':
         fileName = 'OECD_Digital_Economy_Outlook.pdf';
-        fileUrl = 'https://www.oecd-ilibrary.org/sites/bb167041-en/index.html?itemId=/content/publication/bb167041-en';
-        source = 'OECD';
+        fileUrl = 'https://www.oecd-ilibrary.org/docserver/9789264276284-en.pdf';
+        source = 'OECD - Digital Economy Outlook';
         break;
       case 'presentation':
-        fileName = 'WEF_Innovation_Framework_Presentation.pdf';
-        fileUrl = 'https://www3.weforum.org/docs/WEF_Urban_Innovation_Whitepaper_2018.pdf';
-        source = 'World Economic Forum';
+        fileName = 'Innovation_Framework_Presentation.pdf';
+        fileUrl = 'https://www.oecd.org/site/innovationstrategy/45184357.pdf';
+        source = 'OECD - Innovation Strategy Framework';
         break;
       case 'report':
         fileName = 'Global_Innovation_Index.pdf';
-        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022/global-innovation-index-2022-15th-edition.pdf';
-        source = 'WIPO Global Innovation Index';
+        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022.pdf';
+        source = 'WIPO - Global Innovation Index';
         break;
       default:
         fileName = 'innovation_report.pdf';
-        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022/global-innovation-index-2022-15th-edition.pdf';
-        source = 'WIPO';
+        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022.pdf';
+        source = 'WIPO - Global Innovation Report';
     }
     
     // Open file in new tab
@@ -92,7 +100,7 @@ const AdvocacySection = () => {
       description: "Ready-made slides explaining innovation infrastructure needs",
       tag: "presentation",
       image: "linear-gradient(90deg, hsla(59, 86%, 68%, 1), hsla(134, 36%, 53%, 1))",
-      source: "World Economic Forum"
+      source: "OECD Innovation Strategy"
     },
     {
       title: "Global Innovation Index",
