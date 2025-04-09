@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Download, Mail, Twitter, Facebook } from "lucide-react";
+import { Download, Mail, Twitter, Facebook, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from 'sonner';
 import { cn } from "@/lib/utils";
@@ -29,45 +29,47 @@ const AdvocacySection = () => {
   };
   
   const handleDownload = (resourceType: string) => {
-    // Simulate file downloads with different file types
+    // Real data files with actual content
     let fileName = '';
     let fileUrl = '';
+    let source = '';
     
     switch(resourceType) {
       case 'toolkit':
-        fileName = 'innovation_advocacy_toolkit.pdf';
-        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        fileName = 'Innovation_Advocacy_Toolkit_2023.pdf';
+        fileUrl = 'https://www.innovationpolicyplatform.org/www.innovationpolicyplatform.org/sites/default/files/Innovation%20Policy_A%20Guide%20for%20Developing%20Countries.pdf';
+        source = 'World Bank';
         break;
       case 'policy':
-        fileName = 'innovation_policy_brief.pdf';
-        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        fileName = 'Innovation_Policy_Brief_2024.pdf';
+        fileUrl = 'https://unctad.org/system/files/official-document/dtlstict2020d4_en.pdf';
+        source = 'UNCTAD';
         break;
       case 'social':
-        fileName = 'social_media_toolkit.zip';
-        fileUrl = 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip';
+        fileName = 'OECD_Digital_Economy_Outlook.pdf';
+        fileUrl = 'https://www.oecd-ilibrary.org/sites/bb167041-en/index.html?itemId=/content/publication/bb167041-en';
+        source = 'OECD';
         break;
       case 'presentation':
-        fileName = 'local_government_presentation.pptx';
-        fileUrl = 'https://filesamples.com/samples/document/pptx/sample1.pptx';
+        fileName = 'WEF_Innovation_Framework_Presentation.pdf';
+        fileUrl = 'https://www3.weforum.org/docs/WEF_Urban_Innovation_Whitepaper_2018.pdf';
+        source = 'World Economic Forum';
         break;
       case 'report':
-        fileName = 'economic_impact_report.pdf';
-        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        fileName = 'Global_Innovation_Index.pdf';
+        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022/global-innovation-index-2022-15th-edition.pdf';
+        source = 'WIPO Global Innovation Index';
         break;
       default:
         fileName = 'innovation_report.pdf';
-        fileUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+        fileUrl = 'https://www.wipo.int/edocs/pubdocs/en/wipo_pub_2000_2022/global-innovation-index-2022-15th-edition.pdf';
+        source = 'WIPO';
     }
     
-    // Create anchor element to trigger download
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open file in new tab
+    window.open(fileUrl, '_blank');
     
-    toast.success(`Downloading ${fileName.replace(/_/g, ' ').replace('.pdf', '').replace('.zip', '').replace('.pptx', '')}`);
+    toast.success(`Opening ${fileName.replace(/_/g, ' ').replace('.pdf', '')} from ${source}`);
   };
 
   const advocacyResources = [
@@ -75,25 +77,29 @@ const AdvocacySection = () => {
       title: "Innovation Policy Brief",
       description: "Key points and data for communicating with policymakers",
       tag: "policy",
-      image: "linear-gradient(90deg, hsla(221, 45%, 73%, 1), hsla(220, 78%, 29%, 1))"
+      image: "linear-gradient(90deg, hsla(221, 45%, 73%, 1), hsla(220, 78%, 29%, 1))",
+      source: "United Nations Conference on Trade and Development"
     },
     {
-      title: "Social Media Toolkit",
-      description: "Pre-written posts, graphics, and hashtags for digital advocacy",
+      title: "Digital Economy Outlook",
+      description: "Comprehensive analysis of digital trends and innovation policy",
       tag: "social",
-      image: "linear-gradient(90deg, hsla(24, 100%, 83%, 1), hsla(341, 91%, 68%, 1))"
+      image: "linear-gradient(90deg, hsla(24, 100%, 83%, 1), hsla(341, 91%, 68%, 1))",
+      source: "Organization for Economic Co-operation and Development"
     },
     {
-      title: "Local Government Presentation",
+      title: "Innovation Framework",
       description: "Ready-made slides explaining innovation infrastructure needs",
       tag: "presentation",
-      image: "linear-gradient(90deg, hsla(59, 86%, 68%, 1), hsla(134, 36%, 53%, 1))"
+      image: "linear-gradient(90deg, hsla(59, 86%, 68%, 1), hsla(134, 36%, 53%, 1))",
+      source: "World Economic Forum"
     },
     {
-      title: "Economic Impact Report",
+      title: "Global Innovation Index",
       description: "Data-driven analysis of innovation's economic benefits",
       tag: "report",
-      image: "linear-gradient(90deg, hsla(46, 73%, 75%, 1), hsla(176, 73%, 88%, 1))"
+      image: "linear-gradient(90deg, hsla(46, 73%, 75%, 1), hsla(176, 73%, 88%, 1))",
+      source: "World Intellectual Property Organization"
     }
   ];
 
@@ -181,13 +187,14 @@ const AdvocacySection = () => {
                       />
                       <CardContent className="p-5">
                         <h4 className="font-bold text-lg mb-2">{resource.title}</h4>
-                        <p className="text-gray-500 text-sm mb-4">{resource.description}</p>
+                        <p className="text-gray-500 text-sm mb-2">{resource.description}</p>
+                        <p className="text-xs text-gray-400 mb-4">Source: {resource.source}</p>
                         <Button 
                           variant="ghost" 
                           className="text-sm p-0 h-auto hover:bg-transparent hover:text-innovation-700"
                           onClick={() => handleDownload(resource.tag)}
                         >
-                          Download <Download className="h-3.5 w-3.5 ml-1" />
+                          <FileText className="h-3.5 w-3.5 mr-1" /> Download <Download className="h-3.5 w-3.5 ml-1" />
                         </Button>
                       </CardContent>
                     </Card>
