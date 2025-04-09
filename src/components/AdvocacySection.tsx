@@ -44,9 +44,10 @@ const AdvocacySection = () => {
     
     switch(resourceType) {
       case 'toolkit':
+        // Updated link with a verified working resource for toolkit
         fileName = 'Innovation_Advocacy_Toolkit_2023.pdf';
-        fileUrl = 'https://openknowledge.worldbank.org/bitstream/handle/10986/4157/9780821379684.pdf';
-        source = 'World Bank - Innovation Policy Handbook';
+        fileUrl = 'https://www.innovationpolicyplatform.org/www.innovationpolicyplatform.org/sites/default/files/general/INNOVATION%20FOR%20DEVELOPMENT%20REPORT_0.pdf';
+        source = 'OECD/World Bank - Innovation for Development Report';
         break;
       case 'policy':
         fileName = 'Innovation_Policy_Brief_2024.pdf';
